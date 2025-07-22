@@ -11,9 +11,10 @@ scaler = pickle.load(open("scaler.pkl", "rb"))
 # Initialize Flask app
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return jsonify({"message": "API is running. Use POST /predict with JSON input."})
+    return jsonify({"message": "Use POST /predict only"}), 405
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
