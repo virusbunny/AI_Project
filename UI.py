@@ -18,7 +18,7 @@ sleep_map = {
 }
 
 # Load dataset
-df = pd.read_csv("../dataset.csv")
+df = pd.read_csv("dataset.csv")
 df['Sleep Duration'] = df['Sleep Duration'].astype(str).str.strip().str.replace('"', '').str.replace("'", '')
 df['Sleep Duration'] = df['Sleep Duration'].replace({
     'Less than 5 hours': 4,
@@ -32,9 +32,9 @@ df['Work/Study Hours'] = pd.to_numeric(df['Work/Study Hours'], errors='coerce')
 feature_means = {col: df[col].mean() for col in feature_cols}
 
 # Load model and tools
-model = pickle.load(open("../model.pkl", "rb"))
-scaler = pickle.load(open("../scaler.pkl", "rb"))
-label_encoders = pickle.load(open("../label_encoder.pkl", "rb"))
+model = pickle.load(open("model.pkl", "rb"))
+scaler = pickle.load(open("scaler.pkl", "rb"))
+label_encoders = pickle.load(open("label_encoder.pkl", "rb"))
 
 # Page setup
 st.set_page_config(page_title="Student Depression Predictor", layout="wide")
@@ -84,7 +84,7 @@ def plot_gauge(probability):
 # Prediction Request
 if st.button("🔍 Predict"):
     try:
-        response = requests.post("http://localhost:5000/predict", json=input_data)
+        response = requests.post("https://ai-project-dy32.onrender.com", json=input_data)
 
         if response.status_code == 200:
             result_json = response.json()
