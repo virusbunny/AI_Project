@@ -84,7 +84,7 @@ def plot_gauge(probability):
 # Prediction Request
 if st.button("🔍 Predict"):
     try:
-        response = requests.post("https://ai-project-dy32.onrender.com", json=input_data)
+        response = requests.post("https://ai-project-dy32.onrender.com/predict", json=input_data)
 
         if response.status_code == 200:
             result_json = response.json()
